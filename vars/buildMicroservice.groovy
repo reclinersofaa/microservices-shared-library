@@ -7,6 +7,7 @@ def call(){
         environment {
             DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
             DOCKERHUB_USERNAME = 'dttreclinersofaa'  
+            DOCKER_HOST = 'tcp://localhost:2375'
         }
 
         stages{
