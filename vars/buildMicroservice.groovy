@@ -14,7 +14,7 @@ def call(){
                 steps{
                     script{
                         checkout scm
-                        def serviceName = env.JOB_NAME.replace('-pipeline', '')
+                        def serviceName = env.JOB_NAME
                         env.SERVICE_NAME = serviceName
                         echo "Checking service: ${serviceName}"
                         sh '''
