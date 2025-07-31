@@ -56,6 +56,30 @@ def call(){
                     }
                 }
             }
+            stage("Check kube"){
+                steps{
+                    script{
+                        sh 'minikube status'
+                        sh 'kubectl config use-context minikube'
+                    }
+                }
+            }
+            stage("Deploy to kube"){
+                steps{
+                    script{
+                        sh "kubectl apply -f k8s/deployment.yaml"
+                        sh "kubectl apply -f k8s/service.yaml"
+                    }
+                }
+            }
+            stage("Verify the deployment"){
+                steps{
+                    script{
+                        sh "kubectl rollout status deployment/${env.SERVICE_NAME}"
+                        sh "kubectl get pods -l app=${env.SERVICE_NAME}"
+                    }
+                }
+            }
         }
         post {
             always {
