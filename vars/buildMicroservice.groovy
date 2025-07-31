@@ -59,7 +59,6 @@ def call(){
             stage("Check kube"){
                 steps{
                     script{
-                        sh 'minikube status'
                         sh 'kubectl config use-context minikube'
                     }
                 }
